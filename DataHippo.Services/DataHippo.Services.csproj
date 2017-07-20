@@ -5,12 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\" />
-    <Folder Include="Implementation\" />
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="2.0.1" />
+    <PackageReference Include="CoreCompat.System.ComponentModel.Attributes" Version="4.2.3-rg" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CoreCompat.System.ComponentModel.Attributes" Version="4.2.3-rg" />
+    <ProjectReference Include="..\DataHippo.Repositories\DataHippo.Repositories.csproj" />
   </ItemGroup>
 
 </Project>
