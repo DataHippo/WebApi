@@ -10,4 +10,8 @@
     <PackageReference Include="MongoDB.Driver.Core" Version="2.4.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DataHippo.Services\DataHippo.Services.csproj" />
+  </ItemGroup>
+
 </Project>

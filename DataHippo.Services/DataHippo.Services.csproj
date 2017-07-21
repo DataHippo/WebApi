@@ -10,8 +10,4 @@
     <PackageReference Include="CoreCompat.System.ComponentModel.Attributes" Version="4.2.3-rg" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DataHippo.Repositories\DataHippo.Repositories.csproj" />
-  </ItemGroup>
-
 </Project>

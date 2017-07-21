@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using DataHippo.Repositories.Contracts;
-using DataHippo.Repositories.Entities;
 using DataHippo.Services.Contracts;
 using DataHippo.Services.Entities;
+using DataHippo.Services.Repositories.Contracts;
 
 namespace DataHippo.Services.Implementation
 {   
@@ -32,7 +31,7 @@ namespace DataHippo.Services.Implementation
 
         public Task<string> CreateAsync(Test entity)
         {
-            var model = _mapper.Map<Test, TestDto>(entity);
+            
             throw new NotImplementedException();
         }
     }
