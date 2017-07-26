@@ -8,6 +8,6 @@ namespace DataHippo.Services.Contracts
     {
         Task<IEnumerable<Test>> GetAllAsync();
         Task<Test> GetByIdAsync(string id);
-        Task<string> CreateAsync(Test entity);
+        Task<Test> CreateAsync(Test entity);
     }
 }
