@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
 using DataHippo.Services.Contracts;
 using DataHippo.Services.Entities;
 using DataHippo.Services.Repositories.Contracts;
@@ -11,12 +10,10 @@ namespace DataHippo.Services.Implementation
     public class TestService : ITestService
     {
         private readonly ITestRepository _testRepository;
-        private readonly IMapper _mapper;
 
-        public TestService(ITestRepository testRepository, IMapper mapper)
+        public TestService(ITestRepository testRepository)
         {
             _testRepository = testRepository;
-            _mapper = mapper;
         }
 
         public Task<IEnumerable<Test>> GetAllAsync()
@@ -29,10 +26,10 @@ namespace DataHippo.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public Task<string> CreateAsync(Test entity)
+        public async Task<Test> CreateAsync(Test entity)
         {
-            
-            throw new NotImplementedException();
+            //TODO: Validaciones
+            return await _testRepository.CreateAsync(entity);
         }
     }
 }

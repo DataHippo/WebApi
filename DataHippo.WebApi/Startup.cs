@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
+using DataHippo.Repositories.Contracts;
+using DataHippo.Repositories.Implementation;
+using DataHippo.Services.Contracts;
+using DataHippo.Services.Implementation;
+using DataHippo.Services.Repositories.Contracts;
+using DataHippo.WebApi.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace DataHippo.WebApi
 {
@@ -38,6 +38,17 @@ namespace DataHippo.WebApi
                 o.AssumeDefaultVersionWhenUnspecified = true;
                 o.DefaultApiVersion = new ApiVersion(1, 0);
             });
+
+            services.Configure<Settings>(options =>
+            {
+                options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+                options.DataBase = Configuration.GetSection("MongoConnection:Database").Value;
+            });
+
+            services.AddTransient<ITestService, TestService>();
+            services.AddTransient<ITestRepository, TestRepository>();
+
+            services.AddTransient<IMongoDbRepository, MongoDbRepository>();
 
             services.AddAutoMapper();
         }
