@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataHippo.Repositories.Contracts;
 using DataHippo.Repositories.Entities;
 using DataHippo.Services.Entities;
 using DataHippo.Services.Repositories.Contracts;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DataHippo.Repositories.Implementation
 {
     public class TestRepository : ITestRepository
     {
-        private readonly IMongoCollection<TestDto> _collection;
+        private readonly IMongoCollection<TestDb> _collection;
         private const string CollectionName = "test_collection";
         private readonly IMapper _mapper;
 
@@ -20,12 +22,15 @@ namespace DataHippo.Repositories.Implementation
         {
             _mapper = mapper;
             var database = repository.Connect();
-            _collection = database.GetCollection<TestDto>(CollectionName);
+            _collection = database.GetCollection<TestDb>(CollectionName);
         }
 
-        public Task<IEnumerable<Test>> GetAllAsync()
+        public async Task<IEnumerable<Test>> GetAllAsync(string queryFilter, string fieldsProjection)
         {
-            throw new NotImplementedException();
+            var filter = new BsonDocument();
+            var elements = await _collection.Find(filter).Project<TestDb>(fieldsProjection).ToListAsync();
+
+            return _mapper.Map<List<TestDb>, List<Test>>(elements.ToList());
         }
 
         public Task<Test> GetByIdAsync(string id)
@@ -35,9 +40,9 @@ namespace DataHippo.Repositories.Implementation
 
         public async Task<Test> CreateAsync(Test entity)
         {
-            var dto = _mapper.Map<Test, TestDto>(entity);
-            await _collection.InsertOneAsync(dto);
-            return _mapper.Map<TestDto, Test>(dto);
+            var resutl = _mapper.Map<Test, TestDb>(entity);
+            await _collection.InsertOneAsync(resutl);
+            return _mapper.Map<TestDb, Test>(resutl);
         }
     }
 }

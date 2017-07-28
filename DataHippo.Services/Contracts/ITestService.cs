@@ -6,7 +6,7 @@ namespace DataHippo.Services.Contracts
 {
     public interface ITestService
     {
-        Task<IEnumerable<Test>> GetAllAsync();
+        Task<IEnumerable<Test>> GetAllAsync(string filters, string fields);
         Task<Test> GetByIdAsync(string id);
         Task<Test> CreateAsync(Test entity);
     }
