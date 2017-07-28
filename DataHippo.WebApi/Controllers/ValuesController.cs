@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using DataHippo.Services;
 using DataHippo.Services.Contracts;
 using DataHippo.Services.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace DataHippo.WebApi.Controllers
 {
@@ -20,10 +18,11 @@ namespace DataHippo.WebApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get(string filter = "", string fields = "")
         {
-            //var elemetns = _testService.GetAllAsync();
-            return new string[] { "value1", "value2" };
+
+            var elemetns = await _testService.GetAllAsync(filter, fields);
+            return Ok(elemetns);      
         }
 
         [HttpGet("{id}")]
@@ -34,24 +33,10 @@ namespace DataHippo.WebApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Test element)
+        public async Task<IActionResult> Post([FromBody] Test element)
         {
-            if (element == null)
-            {
-                return BadRequest();
-            }
-
-            try
-            {
-                var result = await _testService.CreateAsync(element);
-                return Created("/values/1", result);
-            }
-            catch (Exception e)
-            {
-                //TODO: Gestión de errores
-                throw;
-            }
-         
+            var result = await _testService.CreateAsync(element);
+            return Created("/values/1", result);
         }
 
 

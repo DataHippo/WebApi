@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using DataHippo.Repositories.Entities;
 using DataHippo.Services.Entities;
 
@@ -8,8 +9,9 @@ namespace DataHippo.WebApi
     {
         public MappingProfile()
         {
-            CreateMap<Test, TestDto>();
-            CreateMap<TestDto, Test>();
+            CreateMap<Test, TestDb>();
+            CreateMap<TestDb, Test>();
+           // CreateMap<List<TestDb>, List<Test>>();
         }
     }
 }
