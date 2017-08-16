@@ -40,6 +40,8 @@ namespace DataHippo.WebApi
                 o.DefaultApiVersion = new ApiVersion(1, 0);
             });
 
+            services.AddSingleton<IConfiguration>(Configuration);
+
 
             services.AddTransient<ITestService, TestService>();
             services.AddTransient<ITestRepository, TestRepository>();
