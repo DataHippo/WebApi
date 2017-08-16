@@ -11,7 +11,6 @@ namespace DataHippo.WebApi
         {
             CreateMap<Test, TestDb>();
             CreateMap<TestDb, Test>();
-           // CreateMap<List<TestDb>, List<Test>>();
         }
     }
 }
