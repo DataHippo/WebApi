@@ -62,6 +62,15 @@ namespace DataHippo.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can not access to db server.
+        /// </summary>
+        public static string DataBaseConnectionException {
+            get {
+                return ResourceManager.GetString("DataBaseConnectionException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is a test error message.
         /// </summary>
         public static string TestException {

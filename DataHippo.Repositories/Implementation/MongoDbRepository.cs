@@ -1,6 +1,6 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using DataHippo.Repositories.Contracts;
+﻿using DataHippo.Repositories.Contracts;
+using DataHippo.Resources;
+using DataHippo.Services.Exceptions;
 using MongoDB.Driver;
 using Microsoft.Extensions.Configuration;
 
@@ -28,10 +28,9 @@ namespace DataHippo.Repositories.Implementation
                 var database = client.GetDatabase(databaseName);
                 return database;
             }
-            catch (Exception ex)
+            catch
             {
-                //TODO: Custom Exception
-                throw new Exception("Can not access to db server.", ex);
+                throw new DataBaseConnectionException(ErrorMessages.DataBaseConnectionException);
             }
 
         }
