@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using DataHippo.Resources;
 using DataHippo.Services.Contracts;
 using DataHippo.Services.Entities;
-using DataHippo.Services.Exceptions;
 using DataHippo.Services.Repositories.Contracts;
 
 namespace DataHippo.Services.Implementation
@@ -20,7 +15,7 @@ namespace DataHippo.Services.Implementation
             _apartmentRepository = apartmentRepository;
         }
 
-        public async Task<IEnumerable<Apartment>> GetAllAsync(string fields)
+        public async Task<PagedResult<Apartment>> GetAllAsync(int page, int pageSize, string fields)
         {
             throw new NotImplementedException();
             //var fieldsProjection = BuidlFieldsProjection(fields);

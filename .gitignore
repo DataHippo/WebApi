@@ -6,7 +6,12 @@
 *.user
 *.userosscache
 *.sln.docstates
+
+# ignore a file type
 *.json
+# add an exception (using !) to the preceding rule to track a specific file
+!package.json
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

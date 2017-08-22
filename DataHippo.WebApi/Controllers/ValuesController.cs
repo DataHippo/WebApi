@@ -18,10 +18,9 @@ namespace DataHippo.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(string filter = "", string fields = "")
+        public async Task<IActionResult> Get(int page = 1, int pageSize = 100, string filter = "", string fields = "")
         {
-
-            var elemetns = await _testService.GetAllAsync(filter, fields);
+            var elemetns = await _testService.GetAllAsync(page, pageSize, filter, fields);
             return Ok(elemetns);      
         }
 

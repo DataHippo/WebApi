@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using DataHippo.Resources;
@@ -20,12 +21,31 @@ namespace DataHippo.Services.Implementation
             _testRepository = testRepository;
         }
 
-        public async Task<IEnumerable<Test>> GetAllAsync(string filter, string fields)
+        public async Task<PagedResult<Test>> GetAllAsync(int page, int pageSize, string filter, string fields)
         {
           
             var fieldsProjection = BuidlFieldsProjection(fields);
-            
-            return await _testRepository.GetAllAsync(filter, fieldsProjection);
+
+            var totalElements = await _testRepository.CountAsync();
+            var resutls =  await _testRepository.GetAllAsync(page, pageSize, filter, fieldsProjection);
+
+            var mod = totalElements % pageSize;
+            var totalPagesCount = (totalElements / pageSize) + (mod == 0 ? 0 : 1);
+
+            var nextPage = page < totalPagesCount ? page + 1 : 0;
+            var peviousPage = page > 1 ? page - 1 : 0;
+
+            return new PagedResult<Test>
+            {
+               Data = resutls,
+               Paging = new Page
+               {
+                   Next = nextPage.ToString(),
+                   Previous = peviousPage.ToString(),
+                   First = 1.ToString(),
+                   Last = totalPagesCount.ToString()              
+               }
+            };
         }
 
         public Task<Test> GetByIdAsync(string id)
