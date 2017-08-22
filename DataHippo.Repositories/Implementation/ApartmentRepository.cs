@@ -26,7 +26,7 @@ namespace DataHippo.Repositories.Implementation
             _collection = database.GetCollection<ApartmentDb>(COLLECTION_NAME);
         }
 
-        public async Task<IEnumerable<Apartment>> GetAllAsync(string fieldsProjection)
+        public async Task<IEnumerable<Apartment>> GetAllAsync(int page, int pageSize, string fieldsProjection)
         {
             throw new NotImplementedException();
             //var filter = new BsonDocument();
@@ -45,6 +45,11 @@ namespace DataHippo.Repositories.Implementation
         public async Task<Apartment> CreateAsync(Apartment entity)
         {
 
+            throw new NotImplementedException();
+        }
+
+        public Task<long> Count()
+        {
             throw new NotImplementedException();
         }
     }

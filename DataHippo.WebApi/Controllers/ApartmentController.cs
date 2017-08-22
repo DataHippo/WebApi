@@ -9,7 +9,7 @@ namespace DataHippo.WebApi.Controllers
 {
     [ApiVersion("0.1")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    public class ApartmentController : Controller
+    public class ApartmentController : BaseController
     {
         private readonly IApartmentService _apartmentService;
  
@@ -19,10 +19,10 @@ namespace DataHippo.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(string fields = "")
+        public async Task<IActionResult> Get(int page = 1, int pageSize = 100, string fields = "")
         {
 
-            var elemetns = await _apartmentService.GetAllAsync(fields);
+            var elemetns = await _apartmentService.GetAllAsync(page, pageSize, fields);
             return Ok(elemetns);      
         }
 

@@ -25,10 +25,10 @@ namespace DataHippo.Repositories.Implementation
             _collection = database.GetCollection<TestDb>(CollectionName);
         }
 
-        public async Task<IEnumerable<Test>> GetAllAsync(string queryFilter, string fieldsProjection)
+        public async Task<IEnumerable<Test>> GetAllAsync(int page, int pageSize, string queryFilter, string fieldsProjection)
         {
             var filter = new BsonDocument();
-            var elements = await _collection.Find(filter).Project<TestDb>(fieldsProjection).ToListAsync();
+            var elements = await _collection.Find(filter).Skip(pageSize * (page - 1)).Limit(pageSize).Project<TestDb>(fieldsProjection).ToListAsync();
 
             return _mapper.Map<List<TestDb>, List<Test>>(elements.ToList());
         }
@@ -43,6 +43,12 @@ namespace DataHippo.Repositories.Implementation
             var resutl = _mapper.Map<Test, TestDb>(entity);
             await _collection.InsertOneAsync(resutl);
             return _mapper.Map<TestDb, Test>(resutl);
+        }
+
+        public async Task<long> CountAsync()
+        {
+            var filter = new BsonDocument();
+            return await _collection.CountAsync(filter);
         }
     }
 }
