@@ -32,18 +32,21 @@ namespace DataHippo.Services.Implementation
             var mod = totalElements % pageSize;
             var totalPagesCount = (totalElements / pageSize) + (mod == 0 ? 0 : 1);
 
-            var nextPage = page < totalPagesCount ? page + 1 : 0;
-            var peviousPage = page > 1 ? page - 1 : 0;
+            var nextPage = page < totalPagesCount ? $"apiurl/?page={page + 1}&pageSize={pageSize}" : string.Empty;
+            var previousPage = page > 1 ? $"apiurl/?page={page - 1}&pageSize={pageSize}" : string.Empty;
 
             return new PagedResult<Test>
             {
                Data = resutls,
-               Paging = new Page
+               Paging = new PageValues
                {
-                   Next = nextPage.ToString(),
-                   Previous = peviousPage.ToString(),
-                   First = 1.ToString(),
-                   Last = totalPagesCount.ToString()              
+                   Next = nextPage,
+                   Previous = previousPage,
+                   First = $"apiurl/?page=1&pageSize={pageSize}",
+                   Last = $"apiurl/?page={totalPagesCount}&pageSize={pageSize}",
+                   TotalElements = (int)totalElements,
+                   TotalPages = (int)totalPagesCount
+
                }
             };
         }
