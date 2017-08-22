@@ -7,7 +7,7 @@ namespace DataHippo.Repositories
 {
     public static class QueryHelper
     {
-        public static string BuidlFieldsProjection(string fields)
+        public static string BuidlFieldsProjectionQuery(string fields)
         {
             var result = new StringBuilder();
 
