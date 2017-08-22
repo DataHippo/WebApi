@@ -26,8 +26,8 @@ namespace DataHippo.Services.Implementation
           
             var fieldsProjection = BuidlFieldsProjection(fields);
 
-            var totalElements = await _testRepository.CountAsync();
-            var resutls =  await _testRepository.GetAllAsync(page, pageSize, filter, fieldsProjection);
+            var totalElements = await _testRepository.CountAsync().ConfigureAwait(false);
+            var resutls =  await _testRepository.GetAllAsync(page, pageSize, filter, fieldsProjection).ConfigureAwait(false);
 
             var mod = totalElements % pageSize;
             var totalPagesCount = (totalElements / pageSize) + (mod == 0 ? 0 : 1);
