@@ -7,22 +7,23 @@ using DataHippo.Repositories.Contracts;
 using DataHippo.Repositories.Entities;
 using DataHippo.Services.Contracts;
 using DataHippo.Services.Entities;
+using DataHippo.Services.Repositories.Contracts;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DataHippo.Repositories.Implementation
 {
-    public class ApartmentRepository : IApartmentService
+    public class ApartmentRepository : IApartmentRepository
     {
         private readonly IMongoCollection<ApartmentDb> _collection;
-        private const string CollectionName = "test_collection";
+        private const string COLLECTION_NAME = "apartments";
         private readonly IMapper _mapper;
 
         public ApartmentRepository(IMapper mapper, IMongoDbRepository repository)
         {
             _mapper = mapper;
             var database = repository.Connect();
-            _collection = database.GetCollection<ApartmentDb>(CollectionName);
+            _collection = database.GetCollection<ApartmentDb>(COLLECTION_NAME);
         }
 
         public async Task<IEnumerable<Apartment>> GetAllAsync(string fieldsProjection)
@@ -36,7 +37,7 @@ namespace DataHippo.Repositories.Implementation
             //return _mapper.Map<List<ApartmentDb>, List<Apartment>>(elements.ToList());
         }
 
-        public Task<Apartment> GetByIdAsync(string id)
+        public async Task<Apartment> GetByIdAsync(string id)
         {
             throw new NotImplementedException();
         }

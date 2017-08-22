@@ -4,16 +4,15 @@ using DataHippo.Services.Exceptions;
 using MongoDB.Driver;
 using Microsoft.Extensions.Configuration;
 
-
 namespace DataHippo.Repositories.Implementation
 {
     public class MongoDbRepository : IMongoDbRepository
     {
-        private readonly IConfiguration _config;
+        private readonly IConfiguration _configuration;
 
-        public MongoDbRepository(IConfiguration config)
+        public MongoDbRepository(IConfiguration configuration)
         {
-            _config = config;
+            _configuration = configuration;
         }
 
         public IMongoDatabase Connect()
@@ -21,8 +20,8 @@ namespace DataHippo.Repositories.Implementation
 
             try
             {
-                var databaseConnectionString = _config["MongoConnection:ConnectionString"];
-                var databaseName = _config["MongoConnection:Database"];
+                var databaseConnectionString = _configuration["MongoConnection:ConnectionString"];
+                var databaseName = _configuration["MongoConnection:Database"];
 
                 var client = new MongoClient(databaseConnectionString);
                 var database = client.GetDatabase(databaseName);

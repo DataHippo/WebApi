@@ -4,6 +4,7 @@ using DataHippo.Repositories.Implementation;
 using DataHippo.Services.Contracts;
 using DataHippo.Services.Implementation;
 using DataHippo.Services.Repositories.Contracts;
+using DataHippo.WebApi.Configuration;
 using DataHippo.WebApi.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,15 +41,11 @@ namespace DataHippo.WebApi
                 o.DefaultApiVersion = new ApiVersion(1, 0);
             });
 
-            services.AddSingleton<IConfiguration>(Configuration);
-
-
-            services.AddTransient<ITestService, TestService>();
-            services.AddTransient<ITestRepository, TestRepository>();
-
-            services.AddTransient<IMongoDbRepository, MongoDbRepository>();
-
+            IoCConfiguration.RegisterConfiguration(services, Configuration);
+            IoCConfiguration.Register(services);
+           
             services.AddAutoMapper();
+
             FilterConfig.Configure(services.AddMvc());
 
             services.AddMvc()
