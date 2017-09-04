@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using DataHippo.Resources;
@@ -9,21 +8,29 @@ using DataHippo.Services.Contracts;
 using DataHippo.Services.Entities;
 using DataHippo.Services.Exceptions;
 using DataHippo.Services.Repositories.Contracts;
+using Microsoft.Extensions.Configuration;
+
 
 namespace DataHippo.Services.Implementation
 {   
     public class TestService : ITestService
     {
-        private readonly ITestRepository _testRepository;
 
-        public TestService(ITestRepository testRepository)
+        private readonly ITestRepository _testRepository;
+        private readonly IConfiguration _configuration;
+
+        public TestService(ITestRepository testRepository, IConfiguration configuration)
         {
             _testRepository = testRepository;
+            _configuration = configuration;
         }
 
         public async Task<PagedResult<Test>> GetAllAsync(int page, int pageSize, string filter, string fields)
         {
-          
+
+            var apiUrl = _configuration["ApiConfiguration:Url"];
+            var apiVersion = _configuration["ApiConfiguration:Version"];
+
             var fieldsProjection = BuidlFieldsProjection(fields);
 
             var totalElements = await _testRepository.CountAsync().ConfigureAwait(false);
@@ -32,8 +39,8 @@ namespace DataHippo.Services.Implementation
             var mod = totalElements % pageSize;
             var totalPagesCount = (totalElements / pageSize) + (mod == 0 ? 0 : 1);
 
-            var nextPage = page < totalPagesCount ? $"apiurl/?page={page + 1}&pageSize={pageSize}" : string.Empty;
-            var previousPage = page > 1 ? $"apiurl/?page={page - 1}&pageSize={pageSize}" : string.Empty;
+            var nextPage = page < totalPagesCount ? $"{apiUrl}/{apiVersion}/values/?page={page + 1}&pageSize={pageSize}" : string.Empty;
+            var previousPage = page > 1 ? $"{apiUrl}/{apiVersion}/values/?page={page - 1}&pageSize={pageSize}" : string.Empty;
 
             return new PagedResult<Test>
             {
@@ -42,8 +49,8 @@ namespace DataHippo.Services.Implementation
                {
                    Next = nextPage,
                    Previous = previousPage,
-                   First = $"apiurl/?page=1&pageSize={pageSize}",
-                   Last = $"apiurl/?page={totalPagesCount}&pageSize={pageSize}",
+                   First = $"{apiUrl}/{apiVersion}/values/?page=1&pageSize={pageSize}",
+                   Last = $"{apiUrl}/{apiVersion}/values/?page={totalPagesCount}&pageSize={pageSize}",
                    TotalElements = (int)totalElements,
                    TotalPages = (int)totalPagesCount
 

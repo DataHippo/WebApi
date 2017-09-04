@@ -16,7 +16,7 @@ namespace DataHippo.Repositories.Implementation
         }
 
         public IMongoDatabase Connect()
-        { 
+        {
 
             try
             {
