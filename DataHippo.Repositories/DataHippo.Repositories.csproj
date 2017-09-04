@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Configgy.Microsoft.Extensions.Configuration" Version="1.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0-preview2-final" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0-preview2-final" />
     <PackageReference Include="MongoDB.Bson" Version="2.4.4" />
     <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
