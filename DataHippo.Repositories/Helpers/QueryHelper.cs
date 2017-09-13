@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DataHippo.Repositories
+namespace DataHippo.Repositories.Helpers
 {
     public static class QueryHelper
     {

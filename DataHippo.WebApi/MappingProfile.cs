@@ -11,6 +11,10 @@ namespace DataHippo.WebApi
         {
             CreateMap<Test, TestDb>();
             CreateMap<TestDb, Test>();
+            CreateMap<ApartmentDb, Apartment>();
+            CreateMap<DatesDb, ApartmentDates>();
+            CreateMap<GeoPointDb, GeoPoint>();
+            CreateMap<UserDb, User>();
         }
     }
 }

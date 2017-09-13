@@ -9,6 +9,6 @@ namespace DataHippo.Services.Repositories.Contracts
         Task<IEnumerable<Apartment>> GetAllAsync(int page, int pageSize, string fieldsProjection);
         Task<Apartment> GetByIdAsync(string id);
         Task<Apartment> CreateAsync(Apartment entity);
-        Task<long> Count();
+        Task<long> CountAsync();
     }
 }
