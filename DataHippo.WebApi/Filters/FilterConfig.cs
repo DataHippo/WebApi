@@ -17,7 +17,8 @@ namespace DataHippo.WebApi.Filters
         {
             return new Dictionary<Type, HttpStatusCode>() {
                 {typeof(TestCustomException), HttpStatusCode.BadRequest},
-                {typeof(DataBaseConnectionException), HttpStatusCode.InternalServerError }
+                {typeof(DataBaseConnectionException), HttpStatusCode.InternalServerError },
+                {typeof(EnumMapperException), HttpStatusCode.InternalServerError }
 
             };
         }

@@ -31,9 +31,7 @@ namespace DataHippo.WebApi
             // Add framework services.
             services.AddMvc();
             services.AddApiVersioning(o => {
-                o.ReportApiVersions = true;
-                o.AssumeDefaultVersionWhenUnspecified = true;
-                o.DefaultApiVersion = new ApiVersion(1, 0);
+                o.ReportApiVersions = true;               
             });
 
             IoCConfiguration.RegisterConfiguration(services, Configuration);

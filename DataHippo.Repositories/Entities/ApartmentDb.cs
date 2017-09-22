@@ -33,7 +33,7 @@ namespace DataHippo.Repositories.Entities
         public GeoPointDb LngLat { get; set; }
 
         [BsonElement("license")]
-        public string Licence { get; set; }
+        public string LicenceA{ get; set; }
 
         [BsonElement("capacity")]
         public int Capacity { get; set; }

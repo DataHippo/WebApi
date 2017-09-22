@@ -30,8 +30,8 @@ namespace DataHippo.Services.Implementation
             var mod = totalElements % pageSize;
             var totalPagesCount = (totalElements / pageSize) + (mod == 0 ? 0 : 1);
 
-            var nextPage = page < totalPagesCount ? $"{apiUrl}/{apiVersion}/values/?page={page + 1}&pageSize={pageSize}" : string.Empty;
-            var previousPage = page > 1 ? $"{apiUrl}/{apiVersion}/values/?page={page - 1}&pageSize={pageSize}" : string.Empty;
+            var nextPage = page < totalPagesCount ? $"{apiUrl}/{apiVersion}/apartment/?page={page + 1}&pageSize={pageSize}" : string.Empty;
+            var previousPage = page > 1 ? $"{apiUrl}/{apiVersion}/apartment/?page={page - 1}&pageSize={pageSize}" : string.Empty;
 
             return new PagedResult<Apartment>
             {

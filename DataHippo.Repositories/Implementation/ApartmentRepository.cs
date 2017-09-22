@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataHippo.Repositories.Entities;
@@ -18,10 +20,10 @@ namespace DataHippo.Repositories.Implementation
         private const string COLLECTION_NAME = "apartments";
         private readonly IMapper _mapper;
 
-        public ApartmentRepository(IMapper mapper, IMongoDbContext repository)
+        public ApartmentRepository(IMapper mapper, IMongoDbContext context)
         {
             _mapper = mapper;
-            var database = repository.Connect();
+            var database = context.Connect();
             _collection = database.GetCollection<ApartmentDb>(COLLECTION_NAME);
         }
 
@@ -30,12 +32,13 @@ namespace DataHippo.Repositories.Implementation
 
             var filter = new BsonDocument();
             var elements = await _collection.Find(filter)
-               // .Project<ApartmentDb>(QueryHelper.BuidlFieldsProjectionQuery(fieldsProjection))
+                .Skip(pageSize * (page - 1)).Limit(pageSize)
+                .Project<ApartmentDb>(QueryHelper.BuidlFieldsProjectionQuery(fieldsProjection))
                 .ToListAsync();
-
-            return _mapper.Map<List<ApartmentDb>, List<Apartment>>(elements.ToList());
+        
+                return _mapper.Map<List<ApartmentDb>, List<Apartment>>(elements.ToList());
         }
-
+     
         public async Task<Apartment> GetByIdAsync(string id)
         {
             throw new NotImplementedException();

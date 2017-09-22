@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='PRO|AnyCPU'" />
+
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>

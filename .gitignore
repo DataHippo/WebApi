@@ -7,11 +7,6 @@
 *.userosscache
 *.sln.docstates
 
-# ignore a file type
-*.json
-# add an exception (using !) to the preceding rule to track a specific file
-!package.json
-
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -266,3 +261,7 @@ paket-files/
 __pycache__/
 *.pyc
 /DataHippo.WebApi/Properties/PublishProfiles
+
+# Ignore configuration files
+/**/appsettings.development.json
+/**/appsettings.pro.json
