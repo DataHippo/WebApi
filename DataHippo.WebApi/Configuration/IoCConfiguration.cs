@@ -1,4 +1,4 @@
-﻿using DataHippo.Repositories.Contracts;
+﻿using DataHippo.Repositories;
 using DataHippo.Repositories.Implementation;
 using DataHippo.Services.Contracts;
 using DataHippo.Services.Implementation;
@@ -24,7 +24,7 @@ namespace DataHippo.WebApi.Configuration
 
         public static void RegisterRepositories(IServiceCollection services)
         {
-            services.AddTransient<IMongoDbRepository, MongoDbRepository>();
+            services.AddSingleton<IMongoDbContext, MongoDbContext>();
             services.AddTransient<ITestRepository, TestRepository>();
             services.AddTransient<IApartmentRepository, ApartmentRepository>();
         }

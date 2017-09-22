@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using DataHippo.Repositories.Contracts;
 using DataHippo.Repositories.Entities;
 using DataHippo.Services.Entities;
 using DataHippo.Services.Repositories.Contracts;
@@ -18,7 +17,7 @@ namespace DataHippo.Repositories.Implementation
         private const string CollectionName = "test_collection";
         private readonly IMapper _mapper;
 
-        public TestRepository(IMapper mapper, IMongoDbRepository repository)
+        public TestRepository(IMapper mapper, IMongoDbContext repository)
         {
             _mapper = mapper;
             var database = repository.Connect();

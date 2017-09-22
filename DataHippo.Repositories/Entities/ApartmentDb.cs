@@ -1,30 +1,62 @@
-﻿using System;
-using DataHippo.Services.Entities;
+﻿using DataHippo.Services.Entities;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace DataHippo.Repositories.Entities
 {
     public class ApartmentDb
     {
+        [BsonElement("_id")]
         public string Id { get; set; }
-        public string  UserId { get; set; }
-        public Providers Provider { get; set; }
-        public string Currency { get; set; }
-        public int Price { get; set; }
-        public int PriceUsd { get; set; }
-        public int Reviews { get; set; }
-        public GeoPoint LongLat { get; set; }
-        public string Licence { get; set; }
-        public DateTime DateInsert { get; set; }
-        public DateTime DateLastRevision { get; set; }
-        public int Rate { get; set; }
-        public int Capacity { get; set; }
-        public int MinNights { get; set; }
-        public string Url { get; set; }
-        public int Rooms { get; set; }
-        public int Beds { get; set; }
-        public int Bathrooms { get; set; }
-        public RoomTypes RoomType { get; set; }
-        public string Author { get; set; }
 
+        [BsonElement("name")]
+        public string Name { get; set; }
+
+        [BsonElement("url")]
+        public string Url { get; set; }
+
+        [BsonElement("img")]
+        public string Image { get; set; }
+
+        //[BsonElement("provider")]
+        //public Providers Provider { get; set; }
+
+        [BsonElement("curr")]
+        public string Currency { get; set; }
+
+        [BsonElement("price")]
+        public int Price { get; set; }
+
+        [BsonElement("reviews")]
+        public int Reviews { get; set; }
+
+        [BsonElement("lnglat")]
+        public GeoPointDb LngLat { get; set; }
+
+        [BsonElement("license")]
+        public string LicenceA{ get; set; }
+
+        [BsonElement("capacity")]
+        public int Capacity { get; set; }
+
+        [BsonElement("min_nights")]
+        public int MinNights { get; set; }
+
+        [BsonElement("beds")]
+        public int? BedRooms { get; set; }
+
+        [BsonElement("room_type")]
+        public string RoomType { get; set; }
+
+        [BsonElement("user")]
+        public UserDb User { get; set; }
+
+        [BsonElement("date")]
+        public DatesDb Dates { get; set; }
+
+        [BsonElement("country_code")]
+        public string CountryCode { get; set; }
+
+        [BsonElement("requires_license")]
+        public bool RequiresLicence { get; set; }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using DataHippo.Repositories.Entities;
 using DataHippo.Services.Entities;
+using DataHippo.Services.Helpers;
 
 namespace DataHippo.WebApi
 {
@@ -11,6 +11,20 @@ namespace DataHippo.WebApi
         {
             CreateMap<Test, TestDb>();
             CreateMap<TestDb, Test>();
+            CreateMap<ApartmentDb, Apartment>();
+                //.ForMember(
+                //    dest => dest.RoomType,
+                //    opt => opt.ResolveUsing(src =>
+                //    {
+                //        var value = EnumHelper.GetEnumValueFromDescription<RoomTypes>(src.RoomType);
+                //        var description = EnumHelper.GetEnumDescription(value);
+
+                //        return description;
+                //    }));
+
+            CreateMap<DatesDb, ApartmentDates>();
+            CreateMap<GeoPointDb, GeoPoint>();
+            CreateMap<UserDb, User>();
         }
     }
 }

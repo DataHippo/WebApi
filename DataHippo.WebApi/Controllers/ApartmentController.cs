@@ -19,10 +19,9 @@ namespace DataHippo.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(int page = 1, int pageSize = 100, string fields = "")
+        public async Task<IActionResult> Get(int page = 1, int pageSize = 50, string fields = "")
         {
-
-            var elemetns = await _apartmentService.GetAllAsync(page, pageSize, fields);
+            var elemetns = await _apartmentService.GetAllAsync(page, pageSize, fields).ConfigureAwait(false);
             return Ok(elemetns);      
         }
 

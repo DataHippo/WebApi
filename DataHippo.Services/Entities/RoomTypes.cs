@@ -5,6 +5,8 @@ namespace DataHippo.Services.Entities
     public enum RoomTypes
     {
         [Description("entire_room")]
-        EntireRoom
+        EntireRoom,
+        [Description("entire_home")]
+        EntireHome
     }
 }

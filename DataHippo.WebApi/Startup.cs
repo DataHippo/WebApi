@@ -1,9 +1,4 @@
 ﻿using AutoMapper;
-using DataHippo.Repositories.Contracts;
-using DataHippo.Repositories.Implementation;
-using DataHippo.Services.Contracts;
-using DataHippo.Services.Implementation;
-using DataHippo.Services.Repositories.Contracts;
 using DataHippo.WebApi.Configuration;
 using DataHippo.WebApi.Filters;
 using Microsoft.AspNetCore.Builder;
@@ -36,9 +31,7 @@ namespace DataHippo.WebApi
             // Add framework services.
             services.AddMvc();
             services.AddApiVersioning(o => {
-                o.ReportApiVersions = true;
-                o.AssumeDefaultVersionWhenUnspecified = true;
-                o.DefaultApiVersion = new ApiVersion(1, 0);
+                o.ReportApiVersions = true;               
             });
 
             IoCConfiguration.RegisterConfiguration(services, Configuration);

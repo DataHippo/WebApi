@@ -1,16 +1,15 @@
-﻿using DataHippo.Repositories.Contracts;
-using DataHippo.Resources;
+﻿using DataHippo.Resources;
 using DataHippo.Services.Exceptions;
-using MongoDB.Driver;
 using Microsoft.Extensions.Configuration;
+using MongoDB.Driver;
 
-namespace DataHippo.Repositories.Implementation
+namespace DataHippo.Repositories
 {
-    public class MongoDbRepository : IMongoDbRepository
+    public class MongoDbContext : IMongoDbContext
     {
         private readonly IConfiguration _configuration;
 
-        public MongoDbRepository(IConfiguration configuration)
+        public MongoDbContext(IConfiguration configuration)
         {
             _configuration = configuration;
         }
