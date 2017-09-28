@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using DataHippo.Repositories.Entities;
 using DataHippo.Services.Entities;
-using DataHippo.Services.Helpers;
 
 namespace DataHippo.WebApi
 {
@@ -25,6 +24,7 @@ namespace DataHippo.WebApi
             CreateMap<DatesDb, ApartmentDates>();
             CreateMap<GeoPointDb, GeoPoint>();
             CreateMap<UserDb, User>();
+            CreateMap<RegionDb, Region>();
         }
     }
 }
