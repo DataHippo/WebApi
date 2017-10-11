@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace DataHippo.WebApi.Filters
 {
-    public class ExceptionManagerFilter : ExceptionFilterAttribute
+    public partial class ExceptionManagerFilter : ExceptionFilterAttribute
     {
         private readonly IDictionary<Type, HttpStatusCode> _mappings;
 
@@ -48,20 +48,6 @@ namespace DataHippo.WebApi.Filters
             };
 
             base.OnException(context);
-        }
-
-        public class ErrorResponse
-        {
-            public string Message { get; set; }
-
-            public ErrorResponse()
-            {
-            }
-
-            public ErrorResponse(string message)
-            {
-                Message = message;
-            }
         }
     }
 }

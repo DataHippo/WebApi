@@ -41,7 +41,7 @@ namespace DataHippo.Repositories.Entities
         [BsonElement("min_nights")]
         public int MinNights { get; set; }
 
-        [BsonElement("beds")]
+        [BsonElement("bedrooms")]
         public int? BedRooms { get; set; }
 
         [BsonElement("room_type")]

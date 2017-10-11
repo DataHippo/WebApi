@@ -41,6 +41,7 @@ namespace DataHippo.Repositories.Implementation
 
         public async Task<IEnumerable<Apartment>> GetByRegionAsync(int page, int pageSize, string fieldsProjection, string region)
         {
+            throw new NotImplementedException("Not implemented yet");
             var regionFilter = new BsonDocument();
 
           

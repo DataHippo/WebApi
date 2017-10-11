@@ -120,6 +120,9 @@
   <data name="DataBaseConnectionException" xml:space="preserve">
     <value>Can not access to db server</value>
   </data>
+  <data name="MaximumPageSizeParameterException" xml:space="preserve">
+    <value>The maximum number of elements for the pageSize parameter has been exceeded. Enter a value between 1 and {0}</value>
+  </data>
   <data name="TestException" xml:space="preserve">
     <value>This is a test error message</value>
   </data>

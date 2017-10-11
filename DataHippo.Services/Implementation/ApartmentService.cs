@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using DataHippo.Services.Contracts;
 using DataHippo.Services.Entities;
+using DataHippo.Services.Exceptions;
 using DataHippo.Services.Repositories.Contracts;
 using Microsoft.Extensions.Configuration;
 
@@ -20,6 +21,12 @@ namespace DataHippo.Services.Implementation
 
         public async Task<PagedResult<Apartment>> GetAllAsync(int page, int pageSize, string fields)
         {
+            var maximumPageSize = int.Parse(_configuration["ApiConfiguration:PagingMaxPageSize"]);
+
+            if (pageSize > maximumPageSize)
+            {
+                throw new PaginationParameterException(string.Format(Resources.ErrorMessages.MaximumPageSizeParameterException,maximumPageSize.ToString()));
+            }
 
             var apiUrl = _configuration["ApiConfiguration:Url"];
             var apiVersion = _configuration["ApiConfiguration:Version"];
