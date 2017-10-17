@@ -8,8 +8,7 @@ namespace DataHippo.WebApi
     {
         public MappingProfile()
         {
-            CreateMap<Test, TestDb>();
-            CreateMap<TestDb, Test>();
+
             CreateMap<ApartmentDb, Apartment>();
                 //.ForMember(
                 //    dest => dest.RoomType,
