@@ -36,12 +36,23 @@ namespace DataHippo.Repositories.Implementation
                 .Project<ApartmentDb>(QueryHelper.BuidlFieldsProjectionQuery(fieldsProjection))
                 .ToListAsync();
         
-                return _mapper.Map<List<ApartmentDb>, List<Apartment>>(elements.ToList());
+            return _mapper.Map<List<ApartmentDb>, List<Apartment>>(elements.ToList());
         }
-     
+
+        public async Task<IEnumerable<Apartment>> GetByRegionAsync(int page, int pageSize, string fieldsProjection, string region)
+        {
+            throw new NotImplementedException("Not implemented yet");
+            var regionFilter = new BsonDocument();
+
+          
+        }
+
         public async Task<Apartment> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            var filter = new BsonDocument(new BsonElement("_id", id));
+            var element = await _collection.Find(filter).SingleAsync();
+
+            return _mapper.Map<ApartmentDb, Apartment>(element);
         }
 
         public async Task<Apartment> CreateAsync(Apartment entity)

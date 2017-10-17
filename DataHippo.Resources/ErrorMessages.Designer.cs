@@ -71,6 +71,15 @@ namespace DataHippo.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The maximum number of elements for the pageSize parameter has been exceeded. Enter a value between 1 and {0}.
+        /// </summary>
+        public static string MaximumPageSizeParameterException {
+            get {
+                return ResourceManager.GetString("MaximumPageSizeParameterException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is a test error message.
         /// </summary>
         public static string TestException {
