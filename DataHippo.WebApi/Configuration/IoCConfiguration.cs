@@ -18,14 +18,12 @@ namespace DataHippo.WebApi.Configuration
 
         public static void RegisterServices(IServiceCollection services)
         {
-            services.AddTransient<ITestService, TestService>();
             services.AddTransient<IApartmentService, ApartmentService>();
         }
 
         public static void RegisterRepositories(IServiceCollection services)
         {
             services.AddSingleton<IMongoDbContext, MongoDbContext>();
-            services.AddTransient<ITestRepository, TestRepository>();
             services.AddTransient<IApartmentRepository, ApartmentRepository>();
         }
 
