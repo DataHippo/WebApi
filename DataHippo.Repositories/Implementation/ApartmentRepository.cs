@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataHippo.Repositories.Entities;
@@ -17,14 +15,14 @@ namespace DataHippo.Repositories.Implementation
     public class ApartmentRepository : IApartmentRepository
     {
         private readonly IMongoCollection<ApartmentDb> _collection;
-        private const string COLLECTION_NAME = "apartments";
+        private const string CollectionName = "apartments";
         private readonly IMapper _mapper;
 
         public ApartmentRepository(IMapper mapper, IMongoDbContext context)
         {
             _mapper = mapper;
             var database = context.Connect();
-            _collection = database.GetCollection<ApartmentDb>(COLLECTION_NAME);
+            _collection = database.GetCollection<ApartmentDb>(CollectionName);
         }
 
         public async Task<IEnumerable<Apartment>> GetAllAsync(int page, int pageSize, string fieldsProjection)
@@ -39,12 +37,9 @@ namespace DataHippo.Repositories.Implementation
             return _mapper.Map<List<ApartmentDb>, List<Apartment>>(elements.ToList());
         }
 
-        public async Task<IEnumerable<Apartment>> GetByRegionAsync(int page, int pageSize, string fieldsProjection, string region)
+        public Task<IEnumerable<Apartment>> GetByRegionAsync(int page, int pageSize, string fieldsProjection, string region)
         {
             throw new NotImplementedException("Not implemented yet");
-            var regionFilter = new BsonDocument();
-
-          
         }
 
         public async Task<Apartment> GetByIdAsync(string id)
@@ -55,16 +50,10 @@ namespace DataHippo.Repositories.Implementation
             return _mapper.Map<ApartmentDb, Apartment>(element);
         }
 
-        public async Task<Apartment> CreateAsync(Apartment entity)
-        {
-
-            throw new NotImplementedException();
-        }
-
         public async Task<long> CountAsync()
         {
             var filter = new BsonDocument();
-            return await _collection.CountAsync(filter).ConfigureAwait(false);
+            return await _collection.CountAsync(filter);
         }
     }
 }

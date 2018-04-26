@@ -3,7 +3,6 @@ using DataHippo.WebApi.Configuration;
 using DataHippo.WebApi.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -29,7 +28,7 @@ namespace DataHippo.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc();
+            //services.AddMvc();
             services.AddApiVersioning(o => {
                 o.ReportApiVersions = true;               
             });

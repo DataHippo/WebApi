@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DataHippo.Services.Contracts;
 using DataHippo.Services.Entities;
 using DataHippo.Services.Exceptions;
@@ -31,7 +30,7 @@ namespace DataHippo.Services.Implementation
             }
 
             var totalElements = await GetTotalElements();
-            var resutls = await _apartmentRepository.GetAllAsync(page, pageSize, fields).ConfigureAwait(false);
+            var resutls = await _apartmentRepository.GetAllAsync(page, pageSize, fields);
 
             return new PagedResult<Apartment>
             {
@@ -40,20 +39,9 @@ namespace DataHippo.Services.Implementation
             };
         }
 
-        public Task<Apartment> GetByIdAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Apartment> CreateAsync(Apartment entity)
-        {
-            throw new NotImplementedException(); 
-        }
-
         private async Task<long> GetTotalElements()
         {
-            var totalElements = await _apartmentRepository.CountAsync().ConfigureAwait(false);
-            return totalElements;
+            return await _apartmentRepository.CountAsync();
         }
         
     }
