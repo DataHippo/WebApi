@@ -20,12 +20,12 @@ namespace DataHippo.Repositories.Helpers
 
                     foreach (var fieldValue in fieldsProjectionValues)
                     {
-                        result.AppendFormat("{0}:1,", fieldValue);
+                        result.Append($"{fieldValue}:1,");
                     }
                 }
                 else
                 {
-                    result.AppendFormat("{0}:1", fields);
+                    result.Append($"{fields}:1");
                 }
             }
             result.Append("}");

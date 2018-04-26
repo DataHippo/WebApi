@@ -17,9 +17,6 @@ namespace DataHippo.Repositories.Entities
         [BsonElement("img")]
         public string Image { get; set; }
 
-        //[BsonElement("provider")]
-        //public Providers Provider { get; set; }
-
         [BsonElement("curr")]
         public string Currency { get; set; }
 

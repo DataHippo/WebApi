@@ -1,8 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
-using DataHippo.Services;
+﻿using System.Threading.Tasks;
 using DataHippo.Services.Contracts;
-using DataHippo.Services.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DataHippo.WebApi.Controllers
@@ -31,20 +28,6 @@ namespace DataHippo.WebApi.Controllers
         //    throw new NotImplementedException();
         //}
 
-        //// POST api/values
-        //[HttpPost]
-        //public async Task<IActionResult> Post([FromBody] Test element)
-        //{
-        //    var result = await _testService.CreateAsync(element);
-        //    return Created("/values/1", result);
-        //}
-
-
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
     }
 }
 
